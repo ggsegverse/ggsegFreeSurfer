@@ -1,0 +1,37 @@
+Package: ggsegFreeSurfer
+Title: FreeSurfer Brain Atlases for the 'ggseg' Ecosystem
+Version: 1.0.0
+Authors@R: c(person("Athanasia Mo", "Mowinckel",
+                    email = "a.m.mowinckel@psykologi.uio.no",
+                    role = c("aut", "cre"),
+                    comment = c(ORCID = "0000-0002-5756-0223")),
+            person("Didac", "Vidal-Piñeiro",
+                    email = "d.v.pineiro@psykologi.uio.no",
+                    role = c("aut"),
+                    comment = c(ORCID = "0000-0001-9997-9156")))
+Description: FreeSurfer cortical and subcortical brain atlases for the 'ggseg'
+    ecosystem. Includes the Desikan-Killiany-Tourville cortical atlas (Klein &
+    Tourville 2012), the Destrieux cortical atlas (Destrieux et al. 2010), and
+    the HCP subcortical atlas with anterior/posterior hippocampus subdivisions.
+    Provides unified 'ggseg_atlas' objects with 2D polygon geometry and 3D mesh
+    or vertex data, for use with 'ggseg' and 'ggseg3d'.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Depends:
+    R (>= 3.5)
+Imports:
+    ggseg.formats
+Suggests:
+    ggseg,
+    ggseg3d,
+    ggplot2,
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0),
+    vdiffr
+URL: https://github.com/ggsegverse/ggsegFreeSurfer
+BugReports: https://github.com/ggsegverse/ggsegFreeSurfer/issues
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Config/testthat/edition: 3
+Config/Needs/website: ggsegverse/ggseg.docs

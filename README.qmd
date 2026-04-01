@@ -1,0 +1,89 @@
+---
+format: gfm
+---
+
+<!-- README.md is generated from README.qmd. Please edit that file -->
+
+```{r}
+#| label: setup
+#| include: false
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%",
+  fig.width = 10,
+  fig.retina = 3
+)
+```
+
+# ggsegFreeSurfer
+
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/ggsegverse/ggsegFreeSurfer/workflows/R-CMD-check/badge.svg)](https://github.com/ggsegverse/ggsegFreeSurfer/actions)
+<!-- badges: end -->
+
+This package provides FreeSurfer cortical and subcortical brain atlases
+formatted for use with
+[ggseg](https://ggseg.github.io/ggseg/) and
+[ggseg3d](https://ggseg.github.io/ggseg3d/).
+
+| Atlas | Function | Type | Regions/hemi |
+|-------|----------|------|--------------|
+| Desikan-Killiany-Tourville | `dkt()` | Cortical | 32 |
+| Destrieux | `destrieux()` | Cortical | 75 |
+| HCP Subcortical | `hcpa()` | Subcortical | -- |
+
+To learn how to use these atlases, please look at the documentation for
+[ggseg](https://ggseg.github.io/ggseg/) and
+[ggseg3d](https://ggseg.github.io/ggseg3d/).
+
+## Installation
+
+You can install ggsegFreeSurfer from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("ggsegverse/ggsegFreeSurfer")
+```
+
+## Atlases
+
+```{r}
+#| label: dkt
+#| fig-height: 4
+library(ggseg)
+library(ggsegFreeSurfer)
+library(ggplot2)
+
+ggplot() +
+  geom_brain(
+    atlas = dkt(),
+    mapping = aes(fill = label),
+    position = position_brain(hemi ~ view),
+    show.legend = FALSE
+  ) +
+  ggtitle("Desikan-Killiany-Tourville") +
+  theme_void()
+```
+
+```{r}
+#| label: destrieux
+#| fig-height: 4
+ggplot() +
+  geom_brain(
+    atlas = destrieux(),
+    mapping = aes(fill = label),
+    position = position_brain(hemi ~ view),
+    show.legend = FALSE
+  ) +
+  ggtitle("Destrieux (aparc.a2009s)") +
+  theme_void()
+```
+
+```{r}
+#| label: hcpa
+library(ggseg3d)
+
+ggseg3d(atlas = hcpa())
+```
