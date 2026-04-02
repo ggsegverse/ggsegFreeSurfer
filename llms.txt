@@ -1,9 +1,69 @@
-FreeSurfer cortical and subcortical brain atlases for the 'ggseg'
-ecosystem. Includes the Desikan-Killiany-Tourville cortical atlas (Klein
-& Tourville 2012), the Destrieux cortical atlas (Destrieux et al. 2010),
-and the HCP subcortical atlas with anterior/posterior hippocampus
-subdivisions. Provides unified 'ggseg_atlas' objects with 2D polygon
-geometry and 3D mesh or vertex data, for use with 'ggseg' and 'ggseg3d'.
+# ggsegFreeSurfer
+
+This package provides FreeSurfer cortical and subcortical brain atlases
+formatted for use with [ggseg](https://ggseg.github.io/ggseg/) and
+[ggseg3d](https://ggseg.github.io/ggseg3d/).
+
+| Atlas                      | Function                                                                             | Type        | Regions/hemi |
+|----------------------------|--------------------------------------------------------------------------------------|-------------|--------------|
+| Desikan-Killiany-Tourville | [`dkt()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/dkt.md)             | Cortical    | 32           |
+| Destrieux                  | [`destrieux()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/destrieux.md) | Cortical    | 75           |
+| HCP Subcortical            | [`hcpa()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/hcpa.md)           | Subcortical | –            |
+
+To learn how to use these atlases, please look at the documentation for
+[ggseg](https://ggseg.github.io/ggseg/) and
+[ggseg3d](https://ggseg.github.io/ggseg3d/).
+
+## Installation
+
+You can install ggsegFreeSurfer from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("ggsegverse/ggsegFreeSurfer")
+```
+
+## Atlases
+
+``` r
+library(ggseg)
+library(ggsegFreeSurfer)
+library(ggplot2)
+
+ggplot() +
+  geom_brain(
+    atlas = dkt(),
+    mapping = aes(fill = label),
+    position = position_brain(hemi ~ view),
+    show.legend = FALSE
+  ) +
+  ggtitle("Desikan-Killiany-Tourville") +
+  theme_void()
+```
+
+![](reference/figures/README-dkt-1.png)
+
+``` r
+ggplot() +
+  geom_brain(
+    atlas = destrieux(),
+    mapping = aes(fill = label),
+    position = position_brain(hemi ~ view),
+    show.legend = FALSE
+  ) +
+  ggtitle("Destrieux (aparc.a2009s)") +
+  theme_void()
+```
+
+![](reference/figures/README-destrieux-1.png)
+
+``` r
+library(ggseg3d)
+
+ggseg3d(atlas = hcpa())
+```
+
+![](reference/figures/README-hcpa-1.png)
 
 # Package index
 
