@@ -1,29 +1,30 @@
 # ggsegFreeSurfer
 
 This package provides FreeSurfer cortical and subcortical brain atlases
-formatted for use with [ggseg](https://ggseg.github.io/ggseg/) and
-[ggseg3d](https://ggseg.github.io/ggseg3d/).
-
-| Atlas                      | Function                                                                             | Type        | Regions/hemi |
-|----------------------------|--------------------------------------------------------------------------------------|-------------|--------------|
-| Desikan-Killiany-Tourville | [`dkt()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/dkt.md)             | Cortical    | 32           |
-| Destrieux                  | [`destrieux()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/destrieux.md) | Cortical    | 75           |
-| HCP Subcortical            | [`hcpa()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/hcpa.md)           | Subcortical | –            |
-
-To learn how to use these atlases, please look at the documentation for
-[ggseg](https://ggseg.github.io/ggseg/) and
-[ggseg3d](https://ggseg.github.io/ggseg3d/).
+formatted for use with ggseg.
 
 ## Installation
 
-You can install ggsegFreeSurfer from [GitHub](https://github.com/) with:
+We recommend installing the ggseg-atlases through the ggseg
+[r-universe](https://ggseg.r-universe.dev/ui#builds):
 
 ``` r
-# install.packages("remotes")
-remotes::install_github("ggsegverse/ggsegFreeSurfer")
+options(repos = c(
+  ggseg = "https://ggseg.r-universe.dev",
+  CRAN = "https://cloud.r-project.org"
+))
+
+install.packages("ggsegFreeSurfer")
 ```
 
-## Atlases
+You can install this package from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("pak")
+pak::pak("ggsegverse/ggsegFreeSurfer")
+```
+
+## Desikan-Killiany-Tourville (DKT) atlas
 
 ``` r
 library(ggseg)
@@ -37,11 +38,13 @@ ggplot() +
     position = position_brain(hemi ~ view),
     show.legend = FALSE
   ) +
-  ggtitle("Desikan-Killiany-Tourville") +
+  scale_fill_manual(values = dkt()$palette, na.value = "grey") +
   theme_void()
 ```
 
 ![](reference/figures/README-dkt-1.png)
+
+## Destrieux atlas
 
 ``` r
 ggplot() +
@@ -51,16 +54,19 @@ ggplot() +
     position = position_brain(hemi ~ view),
     show.legend = FALSE
   ) +
-  ggtitle("Destrieux (aparc.a2009s)") +
+  scale_fill_manual(values = destrieux()$palette, na.value = "grey") +
   theme_void()
 ```
 
 ![](reference/figures/README-destrieux-1.png)
 
-``` r
-library(ggseg3d)
+## Data source
 
-ggseg3d(atlas = hcpa())
-```
+Desikan RS, Segonne F, Fischl B, Quinn BT, Dickerson BC, Blacker D, … &
+Killiany RJ (2006). An automated labeling system for subdividing the
+human cerebral cortex on MRI scans into gyral based regions of interest.
+*NeuroImage*, 31(3), 968-980.
 
-![](reference/figures/README-hcpa-1.png)
+Destrieux C, Fischl B, Dale A, & Halgren E (2010). Automatic
+parcellation of human cortical gyri and sulci using standard anatomical
+nomenclature. *NeuroImage*, 53(1), 1-15.
