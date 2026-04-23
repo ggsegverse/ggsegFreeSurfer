@@ -29,17 +29,8 @@ pak::pak("ggsegverse/ggsegFreeSurfer")
 ``` r
 library(ggseg)
 library(ggsegFreeSurfer)
-library(ggplot2)
 
-ggplot() +
-  geom_brain(
-    atlas = dkt(),
-    mapping = aes(fill = label),
-    position = position_brain(hemi ~ view),
-    show.legend = FALSE
-  ) +
-  scale_fill_manual(values = dkt()$palette, na.value = "grey") +
-  theme_void()
+plot(dkt())
 ```
 
 ![](reference/figures/README-dkt-1.png)
@@ -47,15 +38,7 @@ ggplot() +
 ## Destrieux atlas
 
 ``` r
-ggplot() +
-  geom_brain(
-    atlas = destrieux(),
-    mapping = aes(fill = label),
-    position = position_brain(hemi ~ view),
-    show.legend = FALSE
-  ) +
-  scale_fill_manual(values = destrieux()$palette, na.value = "grey") +
-  theme_void()
+plot(destrieux())
 ```
 
 ![](reference/figures/README-destrieux-1.png)
