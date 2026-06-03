@@ -28,7 +28,8 @@ for (nm in cortical_names) {
         ) +
         ggplot2::theme_void()
       vdiffr::expect_doppelganger(
-        paste0(nm, "-2d"), p
+        paste0(nm, "-2d"),
+        p
       )
     })
 
@@ -37,30 +38,42 @@ for (nm in cortical_names) {
       skip_if_not_installed("ggseg.meshes")
       p <- ggseg3d::ggseg3d(atlas = atlas)
       expect_s3_class(
-        p, c("plotly", "htmlwidget")
+        p,
+        c("plotly", "htmlwidget")
       )
     })
   })
 }
 
-describe("hcpa atlas", {
-  atlas <- hcpa()
+subcortical_names <- c(
+  "hcpa",
+  "thalamus",
+  "hippoamyg",
+  "brainstem",
+  "hypothalamus"
+)
 
-  it("is a ggseg_atlas", {
-    expect_s3_class(atlas, "ggseg_atlas")
-    expect_s3_class(atlas, "subcortical_atlas")
-  })
+for (nm in subcortical_names) {
+  atlas <- do.call(nm, list())
 
-  it("is valid", {
-    expect_true(ggseg.formats::is_ggseg_atlas(atlas))
-  })
+  describe(paste(nm, "atlas"), {
+    it("is a ggseg_atlas", {
+      expect_s3_class(atlas, "ggseg_atlas")
+      expect_s3_class(atlas, "subcortical_atlas")
+    })
 
-  it("renders with ggseg3d", {
-    skip_if_not_installed("ggseg3d")
-    skip_if_not_installed("ggseg.meshes")
-    p <- ggseg3d::ggseg3d(atlas = atlas)
-    expect_s3_class(
-      p, c("plotly", "htmlwidget")
-    )
+    it("is valid", {
+      expect_true(ggseg.formats::is_ggseg_atlas(atlas))
+    })
+
+    it("renders with ggseg3d", {
+      skip_if_not_installed("ggseg3d")
+      skip_if_not_installed("ggseg.meshes")
+      p <- ggseg3d::ggseg3d(atlas = atlas)
+      expect_s3_class(
+        p,
+        c("plotly", "htmlwidget")
+      )
+    })
   })
-})
+}
