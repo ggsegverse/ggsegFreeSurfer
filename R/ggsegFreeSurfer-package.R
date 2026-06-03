@@ -3,5 +3,11 @@
 "_PACKAGE"
 
 globalVariables(c(
-  ".dkt", ".destrieux", ".hcpa"
+  ".dkt",
+  ".destrieux",
+  ".hcpa",
+  ".thalamus",
+  ".hippoamyg",
+  ".brainstem",
+  ".hypothalamus"
 ))
