@@ -9,6 +9,7 @@ We recommend installing the ggseg-atlases through the ggseg
 [r-universe](https://ggseg.r-universe.dev/ui#builds):
 
 ``` r
+
 options(repos = c(
   ggseg = "https://ggseg.r-universe.dev",
   CRAN = "https://cloud.r-project.org"
@@ -20,6 +21,7 @@ install.packages("ggsegFreeSurfer")
 You can install this package from [GitHub](https://github.com/) with:
 
 ``` r
+
 # install.packages("pak")
 pak::pak("ggsegverse/ggsegFreeSurfer")
 ```
@@ -27,6 +29,7 @@ pak::pak("ggsegverse/ggsegFreeSurfer")
 ## Desikan-Killiany-Tourville (DKT) atlas
 
 ``` r
+
 library(ggseg)
 library(ggsegFreeSurfer)
 
@@ -38,6 +41,7 @@ plot(dkt())
 ## Destrieux atlas
 
 ``` r
+
 plot(destrieux())
 ```
 
