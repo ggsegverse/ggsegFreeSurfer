@@ -1,4 +1,4 @@
-# ggsegFreeSurfer 1.0.0.9000
+# ggsegFreeSurfer 1.0.1.9000
 
 - Added `thalamus()`, a subcortical atlas of the 26 thalamic nuclei per
   hemisphere (Iglesias et al. 2018)
@@ -13,6 +13,15 @@
   slice geometry (left/right × anterior/posterior), regenerated from the
   `fsaverage5` aseg. It previously carried only 3D meshes and could not be
   `plot()`ted
+- The new atlases ship directly in the sf-optional `brain_polygons` format
+  introduced in 1.0.1, so they render without `sf`
+
+# ggsegFreeSurfer 1.0.1
+
+- Atlas 2D geometry migrated to the sf-optional `brain_polygons` format
+  (`ggseg.formats` 0.0.3). The atlases now render without `sf` and its
+  GDAL/GEOS/PROJ system libraries, enabling wasm and air-gapped installs.
+  Plots are unchanged.
 
 # ggsegFreeSurfer 1.0.0
 
