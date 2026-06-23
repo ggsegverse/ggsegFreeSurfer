@@ -15,6 +15,9 @@
   `plot()`ted
 - The new atlases ship directly in the sf-optional `brain_polygons` format
   introduced in 1.0.1, so they render without `sf`
+- Subcortical 2D layouts trimmed to their most informative slices (`brainstem`
+  to 3 views, `hcpa` to 2, `hypothalamus` to 4) and the grey anatomical context
+  geometry simplified, for clearer plots and smaller bundled data
 
 # ggsegFreeSurfer 1.0.1
 
