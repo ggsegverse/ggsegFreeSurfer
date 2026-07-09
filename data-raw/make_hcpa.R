@@ -218,10 +218,11 @@ hc <- hc_raw |>
   atlas_region_rename("^(left|right) ", "")
 
 # Drop slabs that contain only context (no hippocampus part).
+hc_sf <- ggseg.formats::atlas_sf(hc)
 empty_views <- vapply(
-  unique(hc$data$sf$view),
+  unique(hc_sf$view),
   function(v) {
-    rows <- hc$data$sf[hc$data$sf$view == v, ]
+    rows <- hc_sf[hc_sf$view == v, ]
     !any(rows$label %in% hc$core$label)
   },
   logical(1)
@@ -273,3 +274,5 @@ usethis::use_data(
   compress = "xz",
   internal = TRUE
 )
+
+ggseg.formats::migrate_atlas_files("R")

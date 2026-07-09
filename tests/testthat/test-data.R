@@ -13,6 +13,21 @@ for (nm in cortical_names) {
       expect_true(ggseg.formats::is_ggseg_atlas(atlas))
     })
 
+    it("has brain_polygons 2D geometry", {
+      expect_true(ggseg.formats::is_atlas_polygon(atlas))
+    })
+
+    it("has a named palette", {
+      pal <- ggseg.formats::atlas_palette(atlas)
+      expect_type(pal, "character")
+      expect_named(pal)
+    })
+
+    it("exposes vertices via atlas_vertices", {
+      verts <- ggseg.formats::atlas_vertices(atlas)
+      expect_s3_class(verts, "ggseg_vertices")
+    })
+
     it("renders with ggseg", {
       skip_if_not_installed("ggseg")
       skip_if_not_installed("ggplot2")
@@ -64,6 +79,21 @@ for (nm in subcortical_names) {
 
     it("is valid", {
       expect_true(ggseg.formats::is_ggseg_atlas(atlas))
+    })
+
+    it("has brain_polygons 2D geometry", {
+      expect_true(ggseg.formats::is_atlas_polygon(atlas))
+    })
+
+    it("has a named palette", {
+      pal <- ggseg.formats::atlas_palette(atlas)
+      expect_type(pal, "character")
+      expect_named(pal)
+    })
+
+    it("exposes meshes via atlas_meshes", {
+      meshes <- ggseg.formats::atlas_meshes(atlas)
+      expect_s3_class(meshes, "ggseg_meshes")
     })
 
     it("renders with ggseg3d", {

@@ -238,10 +238,11 @@ hyp <- hyp_raw |>
   atlas_region_rename("^[lr] ", "")
 
 # Drop slabs that contain only context (no subunit).
+hyp_sf <- ggseg.formats::atlas_sf(hyp)
 empty_views <- vapply(
-  unique(hyp$data$sf$view),
+  unique(hyp_sf$view),
   function(v) {
-    rows <- hyp$data$sf[hyp$data$sf$view == v, ]
+    rows <- hyp_sf[hyp_sf$view == v, ]
     !any(rows$label %in% hyp$core$label)
   },
   logical(1)
@@ -294,3 +295,5 @@ usethis::use_data(
   compress = "xz",
   internal = TRUE
 )
+
+ggseg.formats::migrate_atlas_files("R")

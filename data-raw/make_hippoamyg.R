@@ -346,10 +346,11 @@ ha <- ha_raw |>
 # coronal slabs run past the posterior end of the structures, leaving a few
 # views with nothing but surrounding brain. Compute them from core membership
 # so the set stays correct if the slab geometry changes.
+ha_sf <- ggseg.formats::atlas_sf(ha)
 empty_views <- vapply(
-  unique(ha$data$sf$view),
+  unique(ha_sf$view),
   function(v) {
-    rows <- ha$data$sf[ha$data$sf$view == v, ]
+    rows <- ha_sf[ha_sf$view == v, ]
     !any(rows$label %in% ha$core$label)
   },
   logical(1)
@@ -409,3 +410,5 @@ usethis::use_data(
   compress = "xz",
   internal = TRUE
 )
+
+ggseg.formats::migrate_atlas_files("R")

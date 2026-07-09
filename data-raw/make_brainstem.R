@@ -234,10 +234,11 @@ bs <- bs_raw |>
   )
 
 # Drop slabs that contain only context (no substructure).
+bs_sf <- ggseg.formats::atlas_sf(bs)
 empty_views <- vapply(
-  unique(bs$data$sf$view),
+  unique(bs_sf$view),
   function(v) {
-    rows <- bs$data$sf[bs$data$sf$view == v, ]
+    rows <- bs_sf[bs_sf$view == v, ]
     !any(rows$label %in% bs$core$label)
   },
   logical(1)
@@ -290,3 +291,5 @@ usethis::use_data(
   compress = "xz",
   internal = TRUE
 )
+
+ggseg.formats::migrate_atlas_files("R")

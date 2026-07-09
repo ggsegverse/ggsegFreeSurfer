@@ -310,3 +310,5 @@ usethis::use_data(
   compress = "xz",
   internal = TRUE
 )
+
+ggseg.formats::migrate_atlas_files("R")
