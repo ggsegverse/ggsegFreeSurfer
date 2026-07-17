@@ -406,6 +406,8 @@ usethis::use_data(
   .hcpa,
   .thalamus,
   .hippoamyg,
+  .brainstem,
+  .hypothalamus,
   overwrite = TRUE,
   compress = "xz",
   internal = TRUE

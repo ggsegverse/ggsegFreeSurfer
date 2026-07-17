@@ -306,6 +306,9 @@ usethis::use_data(
   .destrieux,
   .hcpa,
   .thalamus,
+  .hippoamyg,
+  .brainstem,
+  .hypothalamus,
   overwrite = TRUE,
   compress = "xz",
   internal = TRUE
