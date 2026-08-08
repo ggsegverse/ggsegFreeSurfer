@@ -28,15 +28,23 @@ human cortical labeling protocol. *Frontiers in Neuroscience*, 6:171.
 ## See also
 
 Other ggseg_atlases:
+[`brainstem()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/brainstem.md),
 [`destrieux()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/destrieux.md),
-[`hcpa()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/hcpa.md)
+[`hcpa()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/hcpa.md),
+[`hippoamyg()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/hippoamyg.md),
+[`hypothalamus()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/hypothalamus.md),
+[`thalamus()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/thalamus.md)
 
 Other cortical_atlases:
 [`destrieux()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/destrieux.md)
 
 Other freesurfer_atlases:
+[`brainstem()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/brainstem.md),
 [`destrieux()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/destrieux.md),
-[`hcpa()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/hcpa.md)
+[`hcpa()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/hcpa.md),
+[`hippoamyg()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/hippoamyg.md),
+[`hypothalamus()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/hypothalamus.md),
+[`thalamus()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/thalamus.md)
 
 ## Examples
 

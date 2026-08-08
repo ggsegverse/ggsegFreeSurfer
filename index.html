@@ -14,8 +14,8 @@
 <link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="FreeSurfer Brain Atlases for the ggseg Ecosystem">
-<meta name="description" content="FreeSurfer cortical and subcortical brain atlases for the ggseg ecosystem. Includes the Desikan-Killiany-Tourville cortical atlas (Klein &amp; Tourville 2012), the Destrieux cortical atlas (Destrieux et al. 2010), and the HCP subcortical atlas with anterior/posterior hippocampus subdivisions. Provides unified ggseg_atlas objects with 2D polygon geometry and 3D mesh or vertex data, for use with ggseg and ggseg3d.">
-<meta property="og:description" content="FreeSurfer cortical and subcortical brain atlases for the ggseg ecosystem. Includes the Desikan-Killiany-Tourville cortical atlas (Klein &amp; Tourville 2012), the Destrieux cortical atlas (Destrieux et al. 2010), and the HCP subcortical atlas with anterior/posterior hippocampus subdivisions. Provides unified ggseg_atlas objects with 2D polygon geometry and 3D mesh or vertex data, for use with ggseg and ggseg3d.">
+<meta name="description" content="FreeSurfer cortical and subcortical brain atlases for the ggseg ecosystem. Provides unified ggseg_atlas objects with 2D polygon geometry and 3D mesh or vertex data, for use with ggseg and ggseg3d.">
+<meta property="og:description" content="FreeSurfer cortical and subcortical brain atlases for the ggseg ecosystem. Provides unified ggseg_atlas objects with 2D polygon geometry and 3D mesh or vertex data, for use with ggseg and ggseg3d.">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -27,7 +27,7 @@
 
     <a class="navbar-brand me-2" href="index.html">ggsegFreeSurfer</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,6 +81,10 @@
 <code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
 <span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"ggsegverse/ggsegFreeSurfer"</span><span class="op">)</span></span></code></pre></div>
 </div>
+</div>
+<div class="section level1">
+<h1 id="cortical-atlases">Cortical atlases<a class="anchor" aria-label="anchor" href="#cortical-atlases"></a>
+</h1>
 <div class="section level2">
 <h2 id="desikan-killiany-tourville-dkt-atlas">Desikan-Killiany-Tourville (DKT) atlas<a class="anchor" aria-label="anchor" href="#desikan-killiany-tourville-dkt-atlas"></a>
 </h2>
@@ -98,13 +102,59 @@
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="reference/destrieux.html">destrieux</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-destrieux-1.png" style="width:100.0%"></p>
 </div>
+</div>
+<div class="section level1">
+<h1 id="subcortical-atlases">Subcortical atlases<a class="anchor" aria-label="anchor" href="#subcortical-atlases"></a>
+</h1>
+<p>The subcortical atlases are embedded in the full-brain <code>aseg</code>, so each slice view shows the structure of interest within its anatomical context (cerebral cortex and white matter rendered grey).</p>
+<div class="section level2">
+<h2 id="anteriorposterior-hippocampus-atlas">Anterior/posterior hippocampus atlas<a class="anchor" aria-label="anchor" href="#anteriorposterior-hippocampus-atlas"></a>
+</h2>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="reference/hcpa.html">hcpa</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-hcpa-1.png" style="width:100.0%"></p>
+</div>
+<div class="section level2">
+<h2 id="thalamic-nuclei-atlas">Thalamic nuclei atlas<a class="anchor" aria-label="anchor" href="#thalamic-nuclei-atlas"></a>
+</h2>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="reference/thalamus.html">thalamus</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-thalamus-1.png" style="width:100.0%"></p>
+</div>
+<div class="section level2">
+<h2 id="hippocampal-subfields--amygdala-nuclei-atlas">Hippocampal subfields &amp; amygdala nuclei atlas<a class="anchor" aria-label="anchor" href="#hippocampal-subfields--amygdala-nuclei-atlas"></a>
+</h2>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="reference/hippoamyg.html">hippoamyg</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-hippoamyg-1.png" style="width:100.0%"></p>
+</div>
+<div class="section level2">
+<h2 id="brainstem-substructures-atlas">Brainstem substructures atlas<a class="anchor" aria-label="anchor" href="#brainstem-substructures-atlas"></a>
+</h2>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="reference/brainstem.html">brainstem</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-brainstem-1.png" style="width:100.0%"></p>
+</div>
+<div class="section level2">
+<h2 id="hypothalamic-subunits-atlas">Hypothalamic subunits atlas<a class="anchor" aria-label="anchor" href="#hypothalamic-subunits-atlas"></a>
+</h2>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="reference/hypothalamus.html">hypothalamus</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-hypothalamus-1.png" style="width:100.0%"></p>
+</div>
 <div class="section level2">
 <h2 id="data-source">Data source<a class="anchor" aria-label="anchor" href="#data-source"></a>
 </h2>
 <p>Desikan RS, Segonne F, Fischl B, Quinn BT, Dickerson BC, Blacker D, … &amp; Killiany RJ (2006). An automated labeling system for subdividing the human cerebral cortex on MRI scans into gyral based regions of interest. <em>NeuroImage</em>, 31(3), 968-980.</p>
 <p>Destrieux C, Fischl B, Dale A, &amp; Halgren E (2010). Automatic parcellation of human cortical gyri and sulci using standard anatomical nomenclature. <em>NeuroImage</em>, 53(1), 1-15.</p>
+<p>Iglesias JE, Augustinack JC, Nguyen K, Player CM, Player A, Wright M, … &amp; Van Leemput K (2015). A computational atlas of the hippocampal formation using ex vivo, ultra-high resolution MRI: Application to adaptive segmentation of in vivo MRI. <em>NeuroImage</em>, 115, 117-137.</p>
+<p>Iglesias JE, Van Leemput K, Bhatt P, Casillas C, Dutt S, Schuff N, … &amp; Fischl B (2015). Bayesian segmentation of brainstem structures in MRI. <em>NeuroImage</em>, 113, 184-195.</p>
+<p>Saygin ZM, Kliemann D, Iglesias JE, van der Kouwe AJW, Boyd E, Reuter M, … &amp; Fischl B (2017). High-resolution magnetic resonance imaging reveals nuclei of the human amygdala: manual segmentation to automatic atlas. <em>NeuroImage</em>, 155, 370-382.</p>
+<p>Iglesias JE, Insausti R, Lerma-Usabiaga G, Bocchetta M, Van Leemput K, Greve DN, … &amp; Paz-Alonso PM (2018). A probabilistic atlas of the human thalamic nuclei combining ex vivo MRI and histology. <em>NeuroImage</em>, 183, 314-326.</p>
+<p>Billot B, Bocchetta M, Todd E, Dalca AV, Rohrer JD, &amp; Iglesias JE (2020). Automated segmentation of the hypothalamus and associated subunits in brain MRI. <em>NeuroImage</em>, 223, 117287.</p>
 </div>
 </div>
+
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">

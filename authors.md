@@ -14,13 +14,13 @@ Source:
 [`DESCRIPTION`](https://github.com/ggsegverse/ggsegFreeSurfer/blob/main/DESCRIPTION)
 
 Mowinckel A, Vidal-Piñeiro D (2026). *ggsegFreeSurfer: FreeSurfer Brain
-Atlases for the 'ggseg' Ecosystem*. R package version 1.0.1,
+Atlases for the 'ggseg' Ecosystem*. R package version 1.0.1.9000,
 <https://github.com/ggsegverse/ggsegFreeSurfer>.
 
     @Manual{,
       title = {ggsegFreeSurfer: FreeSurfer Brain Atlases for the 'ggseg' Ecosystem},
       author = {Athanasia Mo Mowinckel and Didac Vidal-Piñeiro},
       year = {2026},
-      note = {R package version 1.0.1},
+      note = {R package version 1.0.1.9000},
       url = {https://github.com/ggsegverse/ggsegFreeSurfer},
     }

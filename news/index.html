@@ -9,7 +9,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ggsegFreeSurfer</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,6 +40,18 @@
       <small>Source: <a href="https://github.com/ggsegverse/ggsegFreeSurfer/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.0.1.9000" id="ggsegfreesurfer-1019000">ggsegFreeSurfer 1.0.1.9000<a class="anchor" aria-label="anchor" href="#ggsegfreesurfer-1019000"></a></h2>
+<ul><li>Added <code><a href="../reference/thalamus.html">thalamus()</a></code>, a subcortical atlas of the 26 thalamic nuclei per hemisphere (Iglesias et al. 2018)</li>
+<li>Added <code><a href="../reference/hippoamyg.html">hippoamyg()</a></code>, a subcortical atlas of the hippocampal subfields (Iglesias et al. 2015) and amygdala nuclei (Saygin et al. 2017)</li>
+<li>Added <code><a href="../reference/brainstem.html">brainstem()</a></code>, a subcortical atlas of the four brainstem substructures: midbrain, pons, medulla and superior cerebellar peduncle (Iglesias et al. 2015)</li>
+<li>Added <code><a href="../reference/hypothalamus.html">hypothalamus()</a></code>, a subcortical atlas of the five hypothalamic subunits per hemisphere (Billot et al. 2020)</li>
+<li>
+<code><a href="../reference/hcpa.html">hcpa()</a></code> is now a focused anterior/posterior hippocampus atlas with 2D slice geometry (left/right × anterior/posterior), regenerated from the <code>fsaverage5</code> aseg. It previously carried only 3D meshes and could not be <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code>ted</li>
+<li>The new atlases ship directly in the sf-optional <code>brain_polygons</code> format introduced in 1.0.1, so they render without <code>sf</code>
+</li>
+<li>Subcortical 2D layouts trimmed to their most informative slices (<code>brainstem</code> to 3 views, <code>hcpa</code> to 2, <code>hypothalamus</code> to 4) and the grey anatomical context geometry simplified, for clearer plots and smaller bundled data</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.0.1" id="ggsegfreesurfer-101">ggsegFreeSurfer 1.0.1<a class="anchor" aria-label="anchor" href="#ggsegfreesurfer-101"></a></h2>
 <ul><li>Atlas 2D geometry migrated to the sf-optional <code>brain_polygons</code> format (<code>ggseg.formats</code> 0.0.3). The atlases now render without <code>sf</code> and its GDAL/GEOS/PROJ system libraries, enabling wasm and air-gapped installs. Plots are unchanged.</li>

@@ -26,15 +26,23 @@ of human cortical gyri and sulci using standard anatomical nomenclature.
 ## See also
 
 Other ggseg_atlases:
+[`brainstem()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/brainstem.md),
 [`dkt()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/dkt.md),
-[`hcpa()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/hcpa.md)
+[`hcpa()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/hcpa.md),
+[`hippoamyg()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/hippoamyg.md),
+[`hypothalamus()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/hypothalamus.md),
+[`thalamus()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/thalamus.md)
 
 Other cortical_atlases:
 [`dkt()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/dkt.md)
 
 Other freesurfer_atlases:
+[`brainstem()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/brainstem.md),
 [`dkt()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/dkt.md),
-[`hcpa()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/hcpa.md)
+[`hcpa()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/hcpa.md),
+[`hippoamyg()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/hippoamyg.md),
+[`hypothalamus()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/hypothalamus.md),
+[`thalamus()`](https://ggsegverse.github.io/ggsegFreeSurfer/reference/thalamus.md)
 
 ## Examples
 
