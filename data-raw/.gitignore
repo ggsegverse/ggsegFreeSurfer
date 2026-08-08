@@ -1,0 +1,14 @@
+# data-raw build artefacts.
+# Reproducible from upstream FreeSurfer + the make_*.R scripts in this
+# directory, so they don't need to be tracked.
+
+# Per-atlas build caches (snapshots, meshes, contours, …).
+*/
+
+# FreeSurfer-derived volumes and intermediate atlases.
+*.nii
+*.nii.gz
+*.mgz
+
+# Build logs.
+*.log
