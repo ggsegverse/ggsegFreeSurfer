@@ -30,21 +30,10 @@ for (nm in cortical_names) {
 
     it("renders with ggseg", {
       skip_if_not_installed("ggseg")
-      skip_if_not_installed("ggplot2")
       skip_if_not_installed("vdiffr")
-      p <- ggplot2::ggplot() +
-        ggseg::geom_brain(
-          atlas = atlas,
-          mapping = ggplot2::aes(fill = label),
-          position = ggseg::position_brain(
-            hemi ~ view
-          ),
-          show.legend = FALSE
-        ) +
-        ggplot2::theme_void()
       vdiffr::expect_doppelganger(
         paste0(nm, "-2d"),
-        p
+        ggseg::brain_test_plot(atlas)
       )
     })
 
