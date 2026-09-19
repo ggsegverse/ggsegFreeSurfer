@@ -36,7 +36,7 @@
 #      outline as brain context plus the standard subcortical
 #      structures (Caudate, Putamen, Hippocampus, Amygdala, etc.)
 #      as anatomical context around the thalamic nuclei.
-#   f) Applies atlas_smooth() to tidy the 2D contours.
+#   f) Applies atlas_smooth()/atlas_simplify() to tidy the 2D contours.
 #
 # Reference: Iglesias JE, et al. (2018). "A probabilistic atlas of the
 #   human thalamic nuclei combining ex vivo MRI and histology."
@@ -266,8 +266,7 @@ thal <- thal_raw |>
   atlas_view_remove(c("axial_1", "axial_2", "axial_3", "coronal_4")) |>
   atlas_view_gather() |>
   atlas_smooth(
-    keep = NULL,
-    smoothness = 3,
+    smoothness = 0.6,
     exclude = "cortex_"
   )
 
@@ -284,10 +283,10 @@ thal <- thal_raw |>
 # polygon size sensible.
 thal_2 <- atlas_smooth(
   thal,
-  keep = 0.5,
-  smoothness = 4,
+  smoothness = 0.8,
   labels = "cortex_"
-)
+) |>
+  atlas_simplify(keep = 0.5, labels = "cortex_")
 plot(thal_2)
 
 cli::cli_alert_success("thal: {nrow(thal$core)} regions")

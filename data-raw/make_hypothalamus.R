@@ -40,7 +40,7 @@
 #   d) Removes White-Matter, ventricles, CSF and similar polygons
 #      post-build, punches the white matter out of the cortex silhouette,
 #      and keeps the neighbouring subcortical structures as context.
-#   e) Applies atlas_smooth() to tidy the 2D contours.
+#   e) Applies atlas_smooth()/atlas_simplify() to tidy the 2D contours.
 #
 # Reference: Billot B, et al. (2020). "Automated segmentation of the
 #   hypothalamus and associated subunits in brain MRI." NeuroImage,
@@ -256,8 +256,7 @@ if (length(empty_views) > 0) {
 hyp <- hyp |>
   atlas_view_gather() |>
   atlas_smooth(
-    keep = NULL,
-    smoothness = 3,
+    smoothness = 0.6,
     exclude = "^cortex"
   )
 
@@ -266,10 +265,10 @@ hyp <- hyp |>
 # low enough to preserve the anatomical ventricle/WM holes.
 hyp_2 <- atlas_smooth(
   hyp,
-  keep = 0.1,
-  smoothness = 7,
+  smoothness = 1,
   labels = "^cortex"
-)
+) |>
+  atlas_simplify(keep = 0.1, labels = "^cortex")
 plot(hyp_2)
 
 cli::cli_alert_success("hypothalamus: {nrow(hyp$core)} regions")

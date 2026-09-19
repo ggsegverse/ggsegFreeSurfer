@@ -44,7 +44,7 @@
 #      polygons post-build, leaving the smooth `cortex_` outline plus the
 #      neighbouring subcortical structures as anatomical context around the
 #      hippocampal subfields and amygdala nuclei.
-#   e) Applies atlas_smooth() to tidy the 2D contours.
+#   e) Applies atlas_smooth()/atlas_simplify() to tidy the 2D contours.
 #
 # References:
 #   Iglesias JE, et al. (2015). "A computational atlas of the hippocampal
@@ -364,8 +364,7 @@ if (length(empty_views) > 0) {
 ha <- ha |>
   atlas_view_gather() |>
   atlas_smooth(
-    keep = NULL,
-    smoothness = 3,
+    smoothness = 0.6,
     exclude = "^cortex"
   )
 
@@ -383,10 +382,10 @@ ha <- ha |>
 ha_2 <-
   atlas_smooth(
     ha,
-    keep = 0.1,
-    smoothness = 7,
+    smoothness = 1,
     labels = "^cortex"
-  )
+  ) |>
+  atlas_simplify(keep = 0.1, labels = "^cortex")
 plot(ha_2)
 
 cli::cli_alert_success("hippoamyg: {nrow(ha$core)} regions")
