@@ -236,8 +236,7 @@ if (length(empty_views) > 0) {
 hc <- hc |>
   atlas_view_gather() |>
   atlas_smooth(
-    keep = NULL,
-    smoothness = 3,
+    smoothness = 0.6,
     exclude = "^cortex"
   )
 
@@ -245,10 +244,10 @@ hc <- hc |>
 # simplification, kept low enough to preserve anatomical holes.
 hc_2 <- atlas_smooth(
   hc,
-  keep = 0.1,
-  smoothness = 7,
+  smoothness = 1,
   labels = "^cortex"
-)
+) |>
+  atlas_simplify(keep = 0.1, labels = "^cortex")
 plot(hc_2)
 
 cli::cli_alert_success("hcpa: {nrow(hc$core)} regions")

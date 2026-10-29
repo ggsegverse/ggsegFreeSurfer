@@ -37,7 +37,7 @@
 #   d) Removes White-Matter, ventricles, CSF and similar polygons
 #      post-build, punches the white matter out of the cortex silhouette,
 #      and keeps the neighbouring subcortical structures as context.
-#   e) Applies atlas_smooth() to tidy the 2D contours.
+#   e) Applies atlas_smooth()/atlas_simplify() to tidy the 2D contours.
 #
 # Reference: Iglesias JE, et al. (2015). "Bayesian segmentation of
 #   brainstem structures in MRI." NeuroImage, 113:184-195.
@@ -252,8 +252,7 @@ if (length(empty_views) > 0) {
 bs <- bs |>
   atlas_view_gather() |>
   atlas_smooth(
-    keep = NULL,
-    smoothness = 3,
+    smoothness = 0.6,
     exclude = "^cortex"
   )
 
@@ -262,10 +261,10 @@ bs <- bs |>
 # low enough to preserve the anatomical ventricle/WM holes.
 bs_2 <- atlas_smooth(
   bs,
-  keep = 0.1,
-  smoothness = 7,
+  smoothness = 1,
   labels = "^cortex"
-)
+) |>
+  atlas_simplify(keep = 0.1, labels = "^cortex")
 plot(bs_2)
 
 cli::cli_alert_success("brainstem: {nrow(bs$core)} regions")
