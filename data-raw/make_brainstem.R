@@ -205,7 +205,7 @@ bs_raw <- create_subcortical_from_volume(
 # run before White-Matter is removed below.
 bs_raw <- atlas_region_op(
   bs_raw,
-  x = "^cortex",
+  x = "Cerebral-Cortex$",
   y = "White-Matter$",
   action = "difference",
   into = "cortex"
@@ -234,20 +234,7 @@ bs <- bs_raw |>
   )
 
 # Drop slabs that contain only context (no substructure).
-bs_sf <- ggseg.formats::atlas_sf(bs)
-empty_views <- vapply(
-  unique(bs_sf$view),
-  function(v) {
-    rows <- bs_sf[bs_sf$view == v, ]
-    !any(rows$label %in% bs$core$label)
-  },
-  logical(1)
-)
-empty_views <- names(empty_views)[empty_views]
-if (length(empty_views) > 0) {
-  cli::cli_alert_info("Dropping context-only view{?s}: {.val {empty_views}}")
-  bs <- atlas_view_remove(bs, empty_views)
-}
+bs <- atlas_view_remove_empty(bs)
 
 bs <- bs |>
   atlas_view_gather() |>

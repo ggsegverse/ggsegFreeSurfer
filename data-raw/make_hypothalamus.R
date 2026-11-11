@@ -190,7 +190,6 @@ hyp_raw <- create_subcortical_from_volume(
   atlas_name = "hypothalamus",
   views = views,
   output_dir = data_raw,
-  dilate = 3,
   skip_existing = TRUE,
   cleanup = FALSE
 )
@@ -201,7 +200,7 @@ hyp_raw <- create_subcortical_from_volume(
 # run before White-Matter is removed below.
 hyp_raw <- atlas_region_op(
   hyp_raw,
-  x = "^cortex",
+  x = "Cerebral-Cortex$",
   y = "White-Matter$",
   action = "difference",
   into = "cortex"
@@ -238,20 +237,7 @@ hyp <- hyp_raw |>
   atlas_region_rename("^[lr] ", "")
 
 # Drop slabs that contain only context (no subunit).
-hyp_sf <- ggseg.formats::atlas_sf(hyp)
-empty_views <- vapply(
-  unique(hyp_sf$view),
-  function(v) {
-    rows <- hyp_sf[hyp_sf$view == v, ]
-    !any(rows$label %in% hyp$core$label)
-  },
-  logical(1)
-)
-empty_views <- names(empty_views)[empty_views]
-if (length(empty_views) > 0) {
-  cli::cli_alert_info("Dropping context-only view{?s}: {.val {empty_views}}")
-  hyp <- atlas_view_remove(hyp, empty_views)
-}
+hyp <- atlas_view_remove_empty(hyp)
 
 hyp <- hyp |>
   atlas_view_gather() |>

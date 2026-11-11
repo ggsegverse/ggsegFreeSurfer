@@ -310,7 +310,7 @@ ha_raw <- create_subcortical_from_volume(
 # so it stays contextual grey. Must run before White-Matter is removed below.
 ha_raw <- atlas_region_op(
   ha_raw,
-  x = "^cortex",
+  x = "Cerebral-Cortex$",
   y = "White-Matter$",
   action = "difference",
   into = "cortex"
@@ -344,22 +344,8 @@ ha <- ha_raw |>
 
 # Drop slabs that contain only context (no subfield/nucleus): the bbox-derived
 # coronal slabs run past the posterior end of the structures, leaving a few
-# views with nothing but surrounding brain. Compute them from core membership
-# so the set stays correct if the slab geometry changes.
-ha_sf <- ggseg.formats::atlas_sf(ha)
-empty_views <- vapply(
-  unique(ha_sf$view),
-  function(v) {
-    rows <- ha_sf[ha_sf$view == v, ]
-    !any(rows$label %in% ha$core$label)
-  },
-  logical(1)
-)
-empty_views <- names(empty_views)[empty_views]
-if (length(empty_views) > 0) {
-  cli::cli_alert_info("Dropping context-only view{?s}: {.val {empty_views}}")
-  ha <- atlas_view_remove(ha, empty_views)
-}
+# views with nothing but surrounding brain.
+ha <- atlas_view_remove_empty(ha)
 
 ha <- ha |>
   atlas_view_gather() |>
