@@ -37,7 +37,7 @@
 #   d) Removes White-Matter, ventricles, CSF and similar polygons
 #      post-build, punches the white matter out of the cortex silhouette,
 #      and keeps the neighbouring subcortical structures as context.
-#   e) Applies atlas_smooth() to tidy the 2D contours.
+#   e) Applies atlas_smooth()/atlas_simplify() to tidy the 2D contours.
 #
 # Reference: Iglesias JE, et al. (2015). "Bayesian segmentation of
 #   brainstem structures in MRI." NeuroImage, 113:184-195.
@@ -205,7 +205,7 @@ bs_raw <- create_subcortical_from_volume(
 # run before White-Matter is removed below.
 bs_raw <- atlas_region_op(
   bs_raw,
-  x = "^cortex",
+  x = "Cerebral-Cortex$",
   y = "White-Matter$",
   action = "difference",
   into = "cortex"
@@ -234,26 +234,12 @@ bs <- bs_raw |>
   )
 
 # Drop slabs that contain only context (no substructure).
-bs_sf <- ggseg.formats::atlas_sf(bs)
-empty_views <- vapply(
-  unique(bs_sf$view),
-  function(v) {
-    rows <- bs_sf[bs_sf$view == v, ]
-    !any(rows$label %in% bs$core$label)
-  },
-  logical(1)
-)
-empty_views <- names(empty_views)[empty_views]
-if (length(empty_views) > 0) {
-  cli::cli_alert_info("Dropping context-only view{?s}: {.val {empty_views}}")
-  bs <- atlas_view_remove(bs, empty_views)
-}
+bs <- atlas_view_remove_empty(bs)
 
 bs <- bs |>
   atlas_view_gather() |>
   atlas_smooth(
-    keep = NULL,
-    smoothness = 3,
+    smoothness = 0.6,
     exclude = "^cortex"
   )
 
@@ -262,10 +248,10 @@ bs <- bs |>
 # low enough to preserve the anatomical ventricle/WM holes.
 bs_2 <- atlas_smooth(
   bs,
-  keep = 0.1,
-  smoothness = 7,
+  smoothness = 1,
   labels = "^cortex"
-)
+) |>
+  atlas_simplify(keep = 0.1, labels = "^cortex")
 plot(bs_2)
 
 cli::cli_alert_success("brainstem: {nrow(bs$core)} regions")

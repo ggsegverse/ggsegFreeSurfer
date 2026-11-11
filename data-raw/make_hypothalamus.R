@@ -40,7 +40,7 @@
 #   d) Removes White-Matter, ventricles, CSF and similar polygons
 #      post-build, punches the white matter out of the cortex silhouette,
 #      and keeps the neighbouring subcortical structures as context.
-#   e) Applies atlas_smooth() to tidy the 2D contours.
+#   e) Applies atlas_smooth()/atlas_simplify() to tidy the 2D contours.
 #
 # Reference: Billot B, et al. (2020). "Automated segmentation of the
 #   hypothalamus and associated subunits in brain MRI." NeuroImage,
@@ -190,7 +190,6 @@ hyp_raw <- create_subcortical_from_volume(
   atlas_name = "hypothalamus",
   views = views,
   output_dir = data_raw,
-  dilate = 3,
   skip_existing = TRUE,
   cleanup = FALSE
 )
@@ -201,7 +200,7 @@ hyp_raw <- create_subcortical_from_volume(
 # run before White-Matter is removed below.
 hyp_raw <- atlas_region_op(
   hyp_raw,
-  x = "^cortex",
+  x = "Cerebral-Cortex$",
   y = "White-Matter$",
   action = "difference",
   into = "cortex"
@@ -238,26 +237,12 @@ hyp <- hyp_raw |>
   atlas_region_rename("^[lr] ", "")
 
 # Drop slabs that contain only context (no subunit).
-hyp_sf <- ggseg.formats::atlas_sf(hyp)
-empty_views <- vapply(
-  unique(hyp_sf$view),
-  function(v) {
-    rows <- hyp_sf[hyp_sf$view == v, ]
-    !any(rows$label %in% hyp$core$label)
-  },
-  logical(1)
-)
-empty_views <- names(empty_views)[empty_views]
-if (length(empty_views) > 0) {
-  cli::cli_alert_info("Dropping context-only view{?s}: {.val {empty_views}}")
-  hyp <- atlas_view_remove(hyp, empty_views)
-}
+hyp <- atlas_view_remove_empty(hyp)
 
 hyp <- hyp |>
   atlas_view_gather() |>
   atlas_smooth(
-    keep = NULL,
-    smoothness = 3,
+    smoothness = 0.6,
     exclude = "^cortex"
   )
 
@@ -266,10 +251,10 @@ hyp <- hyp |>
 # low enough to preserve the anatomical ventricle/WM holes.
 hyp_2 <- atlas_smooth(
   hyp,
-  keep = 0.1,
-  smoothness = 7,
+  smoothness = 1,
   labels = "^cortex"
-)
+) |>
+  atlas_simplify(keep = 0.1, labels = "^cortex")
 plot(hyp_2)
 
 cli::cli_alert_success("hypothalamus: {nrow(hyp$core)} regions")
